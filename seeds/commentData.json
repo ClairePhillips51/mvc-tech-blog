@@ -1,0 +1,17 @@
+[
+    {
+      "content": "Yeah, absolutely!",
+      "user_id": 1,
+      "post_id": 0
+    },
+    {
+        "content": "Wholeheartedly agree.",
+        "user_id": 2,
+        "post_id": 0
+    },
+    {
+        "content": "This has saved me so much time and stress.",
+        "user_id": 2,
+        "post_id": 1
+    }
+]
