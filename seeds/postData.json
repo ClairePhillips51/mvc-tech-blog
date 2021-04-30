@@ -2,16 +2,16 @@
     {
       "title": "Using Javascript",
       "content": "Here's a tip, using jQuery is way easier than vanilla javascript.",
-      "user_id": 0
+      "user_id": 1
     },
     {
         "title": "Why testing is important",
         "content": "If a heavily used function changes, failed tests will reveal what uses that function.",
-        "user_id": 1
+        "user_id": 2
     },
     {
         "title": "Bootstrap and CSS",
         "content": "Don't write your css when bootstrap will write it for you.",
-        "user_id": 2
+        "user_id": 3
     }
 ]
