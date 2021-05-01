@@ -1,54 +1,50 @@
 # mvc-tech-blog
 
 ## Links
-Link to deployed application [Heroku Link](https://drive.google.com/file/d/1zZJ4myCeQ0WKwZWJmH4tT5EXXnKHsDwM/view?usp=sharing)
+Link to deployed application [Heroku Link](https://calm-ridge-18618.herokuapp.com/)
 
 ## Summary
-CMS-type blog website similar to Wordpress.. 
+CMS-type blog website similar to Wordpress. Making a fully functioning website with a front-end that connects to a back-end server following the MVC paradigm. Handlebars.js is the templating language and Sequelize as the object relational mapping. Express-session is used for authentication. 
+
+![Picture one of the app](pictures/app-view.png)
 
 ## Table of Contents
 1. [Usage](#usage)
-2. [Set Up](#set-up)
+2. [SetUp](#setup)
 3. [What I Learned](#what-i-learned)
 4. [Resources](#resources)
 
 ## Usage
-Once the database has been created and seeded the server is then launched using "npm run start" from the command line. This commands starts the server and from there you can run RESTful CRUD operations through Insomnia to test or mock the back-end server operations of the e-commerce website. Operations are run on three of the models (categories, products, and tags). The Get operator will pull up and display in formatted JSON all the table information that was defined in the model. 
+Upon opening the app a user is sent to the homepage with the list of blogs (if there are any). If a user tries to click on a blog post they are redirected a sign in page where they can either login or sign up. Once that is completed a user is sent back to the homepage where they can now access blog posts and also comment on them. Once a user is logged in a dashboard link appears. From the dashboard a user can create, update or delete a blog post. 
 
-The Post method is used to create a new category, product, or tag. Put will update any on the items from the models, and Delete will delete a certain JSON object based on the model and the id the user passes into the url.
+### Adding comments to post view: 
+![Picture of the add comment page view](pictures/adding-comments.png)
 
-A sample of what some of the operations look like. 
-Get Route: ![Picture one of the Get Api](pictures/get-categories.png)
+### Logged in user creating a new blog post: 
+![Picture of the create a new blog post view](pictures/new-post.png)
 
-Post Route: ![Picture two of the Post Api](pictures/post-tags.png)
+### Options to edit or delete an existing blog: 
+![Picture of the options to edit or delete an exisiting post](pictures/edit-post.png)
 
-Put Route: ![Picture three of the Put Api](pictures/Put-products.png)
-
-Delete Route: ![picture four of the Delete Api](pictures/Delete-tags.png)
+Unless a user signs up and is logged in they will not be able to comment or do any other activity. They will be redirected to the login/ sign up page.  A user also has the option to logout. If a user remains inactive for more than two hours the app will automatically log the user out. 
 
 ## Setup
-This application is just the back-end server and database part of the e-commerce website. The server is set up using express, and sequelize is used to make the adding and maipulating of the database easier. 
+This application is set up using the MVC paradigm and file structure. The controller and api folders hold all the different routes used. The controllers act as the interface between models and views. The models hold the models which store data for the database. The Public and View folders handle all the front-end components. The public folder handles the css and any middleware javascript files. The views folder holds all the handlebars files.
 
-The dotenv package was added to use environment variables to store sensitve data in a .env file with the database name, the username, and password. The inital setup of the database was done in MySQL Workbench as usual. After initializing the database it was seeded using "npm run seed" in the command line. 
+The backend required several npm packages to set up various functions. Express-handlebars was needed to implement handlebars.js. MySQL2 and Sequelize were needed to connect to the database. Dotenv for the environment variables, bcrypt to hash passwords, and express-sessions and connect-session-sequeliza for authentication. 
 
-There are four models: category, products, product-tags, and tag. The index file sets up the associations between the different models. Category to Product is a one to many association and Product to Tag is a many to many association. The models are the tables that would be set up in MySQL workbench but can be typed out as javascript using sequelize. 
-
-![Index.js model associations](pictures/associations.png)
-
-The other main part of the application is the API routes. There are five files that setup the APIs used to interact with the models. The index.js file in the routes folder creates the router. The index.js file in the api folder is like the table of contents that sets up all the connections of the other API routes. The route files are where the CRUD operations are used. The Get API is associated with the find method (either findAll or findByPk), POST API is linked to the create method, PUT is update, and DELETE is linked to the destroy method.
-
-![Routes example one](pictures/routes-1.png)
-
-![Routes example two](pictures/rutes-2.png)
-
-These operations are mocked or tested in Insomnia to show their functionality. To watch how they work view the video which is linked at the beginning of this README. 
+![Needed npm packages](pictures/needed-packs.png)
 
 ## What I Learned
-Sequelize was very helpful in setting up the database and writing the functionality for the routes. Ansynchronous functions used in the routes files were much easier to get working than those in the employee-tracker-sql.
+Looking at the file structure all that was need for this project felt like a huge undertaking. Being able to copy and paste boiler plate code from the past weeks mini-project were extremelly helpful setting up the server.js file and the authentication process. 
+
+I had trouble getting the posts to delete. The server would break trying to delete posts with comments because it would try to delete the post before deleting the comments. In the associations in the Index.js file the "onDelete: 'CASCADE'" wasn't working. I ended up having to manually go through the posts and delete comments so the post could be deleted.
+
+![Delete code](pictures/delete-work-around.png)
 
 ## Resources
 * [Npm Bcrypt](https://www.npmjs.com/package/mysql2)
 * [Express Handlebars](https://sequelize.org/master/)
 * [Express Sessions](https://www.npmjs.com/package/dotenv)
-* [Sequelize Validation and Constraints](https://sequelize.org/master/manual/validations-and-constraints.html) 
-* [Sequelize Associations](https://sequelize.org/master/manual/assocs.html#many-to-many-relationships) 
+* [Deploying to Heroku with MySQL](https://coding-boot-camp.github.io/full-stack/heroku/deploy-with-heroku-and-mysql) 
+* [JawsDB](https://devcenter.heroku.com/articles/jawsdb) 
