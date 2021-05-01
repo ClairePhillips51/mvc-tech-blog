@@ -56,7 +56,26 @@ router.get('/post/:id', async (req, res) => {
     } catch (err) {
       res.status(500).json(err);
     }
-  });
+});
+
+router.get('/newpost', (req, res) => {
+    res.render('newpost');
+});
+
+router.get('/modpost/:id', async (req, res) => {
+    try {
+        const postData = await Post.findByPk(req.params.id);
+    
+        const post = postData.get({ plain: true });
+    
+        res.render('modpost', {
+          ...post,
+          logged_in: req.session.logged_in
+        });
+      } catch (err) {
+        res.status(500).json(err);
+      }
+});
 
 // Use withAuth middleware to prevent access to route
 router.get('/dash', withAuth, async (req, res) => {
@@ -81,10 +100,10 @@ router.get('/dash', withAuth, async (req, res) => {
 
 router.get('/login', (req, res) => {
     // If the user is already logged in, redirect the request to another route
-    /*if (req.session.logged_in) {
+    if (req.session.logged_in) {
       res.redirect('/dash');
       return;
-    }*/
+    }
   
     res.render('login');
   });
