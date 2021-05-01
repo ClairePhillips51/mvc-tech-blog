@@ -1,0 +1,18 @@
+.post {
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.comment {
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    
+}
+
+.new-comment {
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+}
