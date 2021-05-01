@@ -11,8 +11,7 @@
 </div>
 {{#each comments as |comment| }}
 <div class="row mb-4 comment">
-    <p>{{comment.content}}</p>
-    <p>Created by {{comment.user.name}} on {{format_date comment.date_created}}</p>
+    <p>{{comment.content}} <br> Created by {{comment.user.name}} on {{format_date comment.date_created}}</p>
 </div>
 {{/each}}
 <div id="post-id" hidden>{{id}}</div>
