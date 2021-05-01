@@ -94,12 +94,25 @@ router.put('/:id', withAuth, async (req, res) => {
 router.delete('/:id', withAuth, async (req, res) => {
   try {
     console.log('delete post');
-    const postData = await Post.destroy({
-      where: {
-        id: req.params.id,
-        user_id: req.session.user_id,
-      },
+    const post = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: Comment,
+          attributes: ['id'],
+        },
+      ],
     });
+
+    console.log(post.comments);
+    for(let i = 0; i < post.comments.length; i++){
+      console.log(post.comments[i].id);
+      const commentData = await Comment.destroy({
+        where: {
+          id: post.comments[i].id,
+        },
+      });
+    }
+    const postData = post.destroy();
 
     console.log("after destroy");
 
@@ -110,6 +123,7 @@ router.delete('/:id', withAuth, async (req, res) => {
 
     res.status(200).json(postData);
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });

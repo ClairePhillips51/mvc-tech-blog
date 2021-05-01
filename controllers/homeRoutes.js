@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/post/:id', async (req, res) => {
+router.get('/post/:id', withAuth, async (req, res) => {
     try {
       const postData = await Post.findByPk(req.params.id, {
         include: [
@@ -58,11 +58,11 @@ router.get('/post/:id', async (req, res) => {
     }
 });
 
-router.get('/newpost', (req, res) => {
+router.get('/newpost', withAuth, (req, res) => {
     res.render('newpost');
 });
 
-router.get('/modpost/:id', async (req, res) => {
+router.get('/modpost/:id', withAuth, async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.id);
     

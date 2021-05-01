@@ -30,7 +30,6 @@ const deletePostFormHandler = async (event) => {
     const id = document.querySelector('#post-id').innerHTML;
 
     if (id) {
-      console.log("In if statement");
       // Send a PUT request to the API endpoint
       const response = await fetch('/api/posts/'+id, {
         method: 'DELETE',
