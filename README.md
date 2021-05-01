@@ -43,8 +43,8 @@ I had trouble getting the posts to delete. The server would break trying to dele
 ![Delete code](pictures/delete-work-around.png)
 
 ## Resources
-* [Npm Bcrypt](https://www.npmjs.com/package/mysql2)
-* [Express Handlebars](https://sequelize.org/master/)
-* [Express Sessions](https://www.npmjs.com/package/dotenv)
+* [Npm Bcrypt](https://www.npmjs.com/package/bcrypt)
+* [Express Handlebars](https://www.npmjs.com/package/express-handlebars)
+* [Express Sessions](https://www.npmjs.com/package/express-session)
 * [Deploying to Heroku with MySQL](https://coding-boot-camp.github.io/full-stack/heroku/deploy-with-heroku-and-mysql) 
 * [JawsDB](https://devcenter.heroku.com/articles/jawsdb) 
