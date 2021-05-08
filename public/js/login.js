@@ -29,6 +29,12 @@ const loginFormHandler = async (event) => {
     const email = document.querySelector('#email-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
   
+    if(password.length < 8) {
+      alert("Password must be at least 8 characters!");
+      document.location.replace('/login');
+      return;
+    }
+
     if (name && email && password) {
       const response = await fetch('/api/users', {
         method: 'POST',
